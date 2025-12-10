@@ -1,1 +1,0 @@
-print("esto "n fue lo que hice pues)
