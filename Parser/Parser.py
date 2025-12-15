@@ -1,10 +1,7 @@
-import os
-import sys
+
 from xml.dom import minidom
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from Listas import Centro, MaquinaVirtual, Contenedor, ListaDobleEnlazada
+from Listas.componentes import Centro, MaquinaVirtual, Contenedor, ListaDobleEnlazada
+from Listas.lista_enlazada import ListaDobleEnlazada
 
 def Leer_XML(ruta_archivo):
     

@@ -5,7 +5,7 @@
 #              \-maquinaVirtual
 #                   \-nodo1      ->     nodo2       ->      nodo3 
 
-from .lista_enlazada import ListaDobleEnlazada
+from Listas.lista_enlazada import ListaDobleEnlazada
 
 class Centro:
     def __init__(self, id, nombre, pais, ciudad, cpu, ram, almacenamiento):
