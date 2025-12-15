@@ -18,7 +18,7 @@ class ListaDobleEnlazada:
             self.ultimo = nodo
         else:
             self.ultimo.siguiente = nodo
-            nodo.anterior = ultimo
+            nodo.anterior = self.ultimo
             self.ultimo = nodo
 
     # Esta funcion considera el primer y ultimo nodo, por ello enlaza su anterior y siguiente solo si existen
@@ -30,7 +30,7 @@ class ListaDobleEnlazada:
                 nodoAnterior = actual.anterior
                 nodoSiguiente = actual.siguiente
 
-                if nodoAnterior and nodoSiguiente is not None:
+                if nodoAnterior and (nodoSiguiente is not None):
                     nodoAnterior.siguiente = nodoSiguiente
                     nodoSiguiente.anterior = nodoAnterior
 
@@ -41,3 +41,14 @@ class ListaDobleEnlazada:
                 actual = actual.siguiente
         
         print("No se encuentra en la lista.")
+        
+
+
+    def buscarXID(self , id):
+        actual = self.primero
+        
+        while actual is not None:
+            if actual.contenido.id == id:
+                return actual.contenido
+            actual = actual.siguiente
+        return None
