@@ -1,7 +1,6 @@
 # caches del python
 __pycache__/
 
-
 #no es realmente necesario
 Parser/PruebaParser.py
 Parser/prueba.xml
