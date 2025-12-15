@@ -1,4 +1,4 @@
-from lista_enlazada import NodoDoble
+from Listas.lista_enlazada import NodoDoble
 
 class Solicitud:
     def __init__(self, id, cliente, tipo, prioridad, cpu, ram, almacenamiento, tiempo):
