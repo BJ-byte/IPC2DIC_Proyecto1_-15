@@ -23,6 +23,3 @@ htmlcov/
 Thumbs.db
 .DS_Store
 
-# Proyecto específico (ajusta según quieras versionarlos)
-Parser/PruebaParser.py
-Parser/prueba.xml
