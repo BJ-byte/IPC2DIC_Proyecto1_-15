@@ -1,6 +1,28 @@
-# caches del python
+# Python caches
 __pycache__/
+*.py[cod]
+*$py.class
 
-#no es realmente necesario
+# Virtual environments
+.venv/
+venv/
+env/
+.env/
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editor/OS
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
+
+# Proyecto específico (ajusta según quieras versionarlos)
 Parser/PruebaParser.py
 Parser/prueba.xml
