@@ -1,8 +1,0 @@
-# Caches del python
-__pycache__/
-
-# prueba de que el parser funciona
-PruebaParser.py
-
-# entrada xml que nos dieron
-prueba.xml
