@@ -1,4 +1,8 @@
+import os
+import sys
 from xml.dom import minidom
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from Listas import Centro, MaquinaVirtual, Contenedor, ListaDobleEnlazada
 
