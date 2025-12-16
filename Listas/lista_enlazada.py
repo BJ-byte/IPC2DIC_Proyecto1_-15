@@ -50,3 +50,20 @@ class ListaDobleEnlazada:
                 return actual.contenido
             actual = actual.siguiente
         return None
+
+    def nodoConMasRecursos():
+        actual = self.primero
+        nodoConMasRecursos = actual.contenido
+
+        cpu = int(actual.cpu)
+        ram = int(actual.ram)
+        almacenamiento = int(actual.almacenamiento)
+
+        cpu2 = int(nodoConMasRecursos.cpu)
+        ram2 = int(nodoConMasRecursos.ram)
+        almacenamiento2 = int(nodoConMasRecursos.almacenamiento)
+
+        while actual is not None:
+            if cpu > cpu2 and ram > ram2 and almacenamiento > almacenamiento2:
+                nodoConMasRecursos = actual.contenido
+            actual = actual.siguiente

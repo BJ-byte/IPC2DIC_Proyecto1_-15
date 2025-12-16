@@ -81,4 +81,4 @@ class Cola:
             print(f"Solicitud: {solicitud} - {nombre} - ({tipo}) - Prioridad: {prioridad} ")
             print("Estado: Pendiente")
             print(f"Recursos: CPU = {cpu}, Ram = {ram} GB")
-            actual = actual.siguiente    
+            actual = actual.siguiente  
