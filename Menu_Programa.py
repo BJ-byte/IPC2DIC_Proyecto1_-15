@@ -19,7 +19,7 @@ def menu():
         print("8. Historial de Operaciones")
         print("9. Salir")
         
-        opcion = input("Seleccione una opción: ")
+        opcion = input("Seleccione una opción: \n")
         
         if opcion == "1":
             
@@ -36,7 +36,7 @@ def menu():
                 print("3. Mostrar Centro con más recursos")
                 print("4. Salir")
         
-                opcioninterna = input("Selecciona una Opcion")
+                opcioninterna = input("Selecciona una Opcion: \n")
         
                 if opcioninterna == "1":
         
@@ -64,7 +64,7 @@ def menu():
                 print("3. Migrar Maquina Virtual")
                 print("4. Salir")
         
-                opcioninterna = input("Selecciona una Opcion")
+                opcioninterna = input("Selecciona una Opcion: \n")
         
                 if opcioninterna == "1":
         
@@ -92,7 +92,7 @@ def menu():
                 print("4. Eliminar contenedor")
                 print("5. Salir")
         
-                opcioninterna = input("Selecciona una Opcion")
+                opcioninterna = input("Selecciona una Opcion: \n")
         
                 if opcioninterna == "1":
         
@@ -123,7 +123,7 @@ def menu():
                 print("4. Ver cola de solicitudes")
                 print("5. Salir")
         
-                opcioninterna = input("Selecciona una Opcion")
+                opcioninterna = input("Selecciona una Opcion: \n")
         
                 if opcioninterna == "1":
         
@@ -179,11 +179,20 @@ def imprimirCentros():
         porcentaje_almacenamiento = (int(almacenamiento_usado) / int(centro.almacenamiento)) * 100
         
         print("-----------------------------------------------------------------------------------------------------")
-        print(indice,". ID: ", centro.id, ". Nombre:", centro.nombre)
+        print(indice,". ID: ", centro.id, " /   Nombre:", centro.nombre)
         print("CPU: ", cpu_usado, " de ", centro.cpu, "/    Aproximádamente: ", porcentaje_cpu,"%")
         print("Ram: ", ram_usada, " de ", centro.ram, "/    Aproximádamente: ", porcentaje_ram,"%")
         print("Almacenamiento: ", almacenamiento_usado, " de ", centro.almacenamiento, "/   Aproximádamente: ", porcentaje_almacenamiento,"%")
         actual = actual.siguiente
         indice = indice + 1
-        
+
+def buscandoCentro(id):
+    
+    global lista_Centros
+
+    centro: Centro = lista_Centros.buscarXID(id)
+    
+    if centro is not None:
+        print("")
+    
 menu()

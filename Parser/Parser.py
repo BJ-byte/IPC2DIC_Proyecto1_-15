@@ -104,11 +104,7 @@ def Leer_XML(ruta_archivo):
             solicitud_tiempoEstimado = solicitud.getElementsByTagName('tiempoEstimado')[0].firstChild.data
             
             print("-----------------------------------------------------------------------------------------------------")
-            print("ID de la solicitud: ", solicitud_id, "\n")
-            print("Cliente de la solicitud: ", solicitud_cliente, "Tipo de solicitud: ", solicitud_tipo, "Prioridad de la solicitud: ", solicitud_prioridad, "\n")
-            print("Recursos solicitados: \n")   
-            print("CPU: ", solicitud_recursos_cpu, "Ram: ", solicitud_recursos_ram, "Almacenamiento: ", solicitud_recursos_almacenamiento, "\n")
-            print("Tiempo estimado de la solicitud: ", solicitud_tiempoEstimado, "\n")
+            print("Solicitud: ", solicitud_id, " cargada.""\n")
             print("-----------------------------------------------------------------------------------------------------")
             
         instrucciones = doc.getElementsByTagName('instruccion')
@@ -128,7 +124,6 @@ def Leer_XML(ruta_archivo):
                 print("-----------------------------------------------------------------------------------------------------")
                 print("Instruccion Crear VM: \n")
                 print("ID: ", instruccion_id, "Centro: ", instruccion_centro, "SO: ", instruccion_so, "\n")
-                print("CPU: ", instrucion_cpu, "Ram: ", instruccion_ram, "Almacenamiento: ", instruccion_almacenamiento, "\n")
                 print("-----------------------------------------------------------------------------------------------------")
                 
             elif instruccion_tipo == "migrarVM":
