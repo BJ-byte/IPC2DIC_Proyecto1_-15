@@ -34,10 +34,13 @@ class Cola:
         return temp
 
     def desencolarN(self, n):
+        solicitudesDesencoladas = lista_enlazada
         i = 0 
         while i < n :
-            desencolar()
+            solicitud = desencolar()
+            solicitudesDesencoladas.insertar(solicitud.contenido)
             i++
+        return solicitudesDesencoladas
     
     def desencolarPrioridad(self):
 
@@ -66,4 +69,27 @@ class Cola:
                 return nodoMayorPrioridad
 
     def verSolicitudes(self):
-        
+        actual = self.primero
+        while(actual != None):
+            solicitud = actual.contenido
+            id = solicitud.id
+            nombre = solicitud.nombre
+            tipo = solicitud.tipo
+            prioridad = solicitud.prioridad
+            cpu = solicitud.cpu
+            ram = solicitud.ram
+            print(f"Solicitud: {solicitud} - {nombre} - ({tipo}) - Prioridad: {prioridad} ")
+            print("Estado: Pendiente")
+            print(f"Recursos: CPU = {cpu}, Ram = {ram} GB")
+            actual = actual.siguiente
+
+def procesarSolicitud(solicitud):
+    tipoSolicitud = solicitud.tipo
+    if(tipoSolicitud == Deploy):
+
+    elif(tipoSolicitud == Backup):
+
+def crearMV():
+
+def validarRecursosCentros(contadorRecursos):
+    
