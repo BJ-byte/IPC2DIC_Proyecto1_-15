@@ -17,6 +17,21 @@ class Centro:
         self.ram = ram
         self.almacenamiento = almacenamiento
         self.listaMaquinasVirtuales = ListaDobleEnlazada("VM's de: " + id)
+        
+    def CalcularConsumoCentro(self):
+        cpu_usado = 0
+        ram_usada = 0
+        almacenamiento_usado = 0
+    
+        actual = self.listaMaquinasVirtuales.primero
+        
+        while actual is not None:
+            vm = actual.contenido
+            cpu_usado += int(vm.cpu)
+            ram_usada += int(vm.ram)
+            almacenamiento_usado += int(vm.almacenamiento)
+            actual = actual.siguiente
+        return cpu_usado, ram_usada, almacenamiento_usado
 
 class MaquinaVirtual:
     def __init__(self, id, centroAsignado, so, cpu, ram, almacenamiento, ip, estado):

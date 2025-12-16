@@ -1,4 +1,5 @@
 from Parser.Parser import Leer_XML
+from Listas.componentes import Centro, MaquinaVirtual, Contenedor, ListaDobleEnlazada
 
 lista_Centros = None
 
@@ -171,13 +172,18 @@ def imprimirCentros():
     while actual is not None:
         
         centro = actual.contenido
+        cpu_usado, ram_usada, almacenamiento_usado = centro.CalcularConsumoCentro()
+        
+        porcentaje_cpu = (int(cpu_usado) / int(centro.cpu)) * 100
+        porcentaje_ram = (int(ram_usada) / int(centro.ram)) * 100
+        porcentaje_almacenamiento = (int(almacenamiento_usado) / int(centro.almacenamiento)) * 100
+        
         print("-----------------------------------------------------------------------------------------------------")
-        print(indice,". ID: ", centro.id, "Nombre:", centro.nombre)
+        print(indice,". ID: ", centro.id, ". Nombre:", centro.nombre)
+        print("CPU: ", cpu_usado, " de ", centro.cpu, "/    Aproximádamente: ", porcentaje_cpu,"%")
+        print("Ram: ", ram_usada, " de ", centro.ram, "/    Aproximádamente: ", porcentaje_ram,"%")
+        print("Almacenamiento: ", almacenamiento_usado, " de ", centro.almacenamiento, "/   Aproximádamente: ", porcentaje_almacenamiento,"%")
         actual = actual.siguiente
         indice = indice + 1
         
-def calculoRecursos():
-    
-    print
-
 menu()
