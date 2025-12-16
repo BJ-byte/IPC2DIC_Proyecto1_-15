@@ -158,6 +158,16 @@ def menu():
         else:
             print("Opción inválida. Por favor, intente de nuevo.")
 
+def actualizarRecursosCentros():
+    actual = lista_Centros.primero
+    while actual is not None:
+        centro = actual.contenido
+        cpu_usado, ram_usada, almacenamiento_usado = centro.CalcularConsumoCentro()
+        int(centro.cpu) -= int(cpu_usado)
+        int(centro.ram) -= int(ram_usada)
+        int(centro.almacenamiento) -= int(almacenamiento_usado)
+        actual = actual.siguiente
+
 def imprimirCentros():
     global lista_Centros
     
@@ -185,5 +195,17 @@ def imprimirCentros():
         print("Almacenamiento: ", almacenamiento_usado, " de ", centro.almacenamiento, "/   Aproximádamente: ", porcentaje_almacenamiento,"%")
         actual = actual.siguiente
         indice = indice + 1
+
+def procesarSolicitud(solicitud):
+    tipoSolicitud = solicitud.tipo
+    if(tipoSolicitud == Deploy):
+
+    elif(tipoSolicitud == Backup):
+
+def crearMV():
+
+def eliminarMV():
+
+def validarRecursosCentros(contadorRecursos):
         
 menu()

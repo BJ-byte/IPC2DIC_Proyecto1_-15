@@ -41,8 +41,6 @@ class ListaDobleEnlazada:
                 actual = actual.siguiente
         
         print("No se encuentra en la lista.")
-        
-
 
     def buscarXID(self , id):
         actual = self.primero
