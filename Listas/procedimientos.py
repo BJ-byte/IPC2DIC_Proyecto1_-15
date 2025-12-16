@@ -39,7 +39,7 @@ class Cola:
         while i < n :
             solicitud = desencolar()
             solicitudesDesencoladas.insertar(solicitud.contenido)
-            i++
+            i += 1
         return solicitudesDesencoladas
     
     def desencolarPrioridad(self):
@@ -81,15 +81,4 @@ class Cola:
             print(f"Solicitud: {solicitud} - {nombre} - ({tipo}) - Prioridad: {prioridad} ")
             print("Estado: Pendiente")
             print(f"Recursos: CPU = {cpu}, Ram = {ram} GB")
-            actual = actual.siguiente
-
-def procesarSolicitud(solicitud):
-    tipoSolicitud = solicitud.tipo
-    if(tipoSolicitud == Deploy):
-
-    elif(tipoSolicitud == Backup):
-
-def crearMV():
-
-def validarRecursosCentros(contadorRecursos):
-    
+            actual = actual.siguiente    
