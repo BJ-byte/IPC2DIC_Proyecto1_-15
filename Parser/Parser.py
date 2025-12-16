@@ -53,10 +53,10 @@ def Leer_XML(ruta_archivo):
             
             mvNueva = MaquinaVirtual(mv_id, mv_centroAsignado, mv_SO, mv_cpu, mv_ram, mv_almacenamiento, mv_ip, "Activa")
             
-            centro: Centro = lista_Centros.buscarXID(mv_centroAsignado)
+            centroBuscado: Centro = lista_Centros.buscarXID(mv_centroAsignado)
             
-            if centro is not None:
-                centro.listaMaquinasVirtuales.insertar(mvNueva)
+            if centroBuscado is not None:
+                centroBuscado.listaMaquinasVirtuales.insertar(mvNueva)
             else:
                 print("El centro: ", mv_centroAsignado,  " No fue encontrado o no existe.")
             
@@ -65,7 +65,6 @@ def Leer_XML(ruta_archivo):
             print("-----------------------------------------------------------------------------------------------------")
             
             contenedores = mv.getElementsByTagName('contenedor')
-            maquina_virtual: MaquinaVirtual = centro.listaMaquinasVirtuales.buscarXID(mv_id)
             
             for mv_contenedor in contenedores:
                 
@@ -81,7 +80,8 @@ def Leer_XML(ruta_archivo):
                 
                 contenedorNuevo = Contenedor(mv_contenedor_id, mv_contenedor_nombre, mv_contenedor_imagen, mv_contenedor_cpu, mv_contenedor_ram, mv_contenedor_puerto)
 
-                    
+                maquina_virtual: MaquinaVirtual = centroBuscado.listaMaquinasVirtuales.buscarXID(mv_id)    
+                
                 if maquina_virtual is not None:
                     maquina_virtual.listaContenedores.insertar(contenedorNuevo)
 
@@ -156,7 +156,5 @@ def Leer_XML(ruta_archivo):
         
     except Exception as e:
         print(f"A ocurrido un error al tratar de cargar el archivo: {e} ")
+    
     return lista_Centros
-
-__all__ = ['Leer_XML']
-
