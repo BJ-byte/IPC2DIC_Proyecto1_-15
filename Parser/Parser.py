@@ -2,10 +2,12 @@
 from xml.dom import minidom
 from Listas.componentes import Centro, MaquinaVirtual, Contenedor, ListaDobleEnlazada
 from Listas.lista_enlazada import ListaDobleEnlazada
+from Listas.procedimientos import Cola
 
 def Leer_XML(ruta_archivo):
     
     lista_Centros = ListaDobleEnlazada("Lista de centros")
+    cola_Solicitudes = Cola()
     
     try:
         doc = minidom.parse(ruta_archivo)
@@ -110,6 +112,8 @@ def Leer_XML(ruta_archivo):
             print("CPU: ", solicitud_recursos_cpu, "Ram: ", solicitud_recursos_ram, "Almacenamiento: ", solicitud_recursos_almacenamiento, "\n")
             print("Tiempo estimado de la solicitud: ", solicitud_tiempoEstimado, "\n")
             print("-----------------------------------------------------------------------------------------------------")
+
+            cola_Solicitudes.encolar(solicitud_id, solicitud_cliente, solicitud_tipo, solicitud_prioridad, solicitud_recursos_cpu, solicitud_recursos_ram, solicitud_recursos_almacenamiento, solicitud_tiempoEstimado)
             
         instrucciones = doc.getElementsByTagName('instruccion')
             
@@ -130,6 +134,8 @@ def Leer_XML(ruta_archivo):
                 print("ID: ", instruccion_id, "Centro: ", instruccion_centro, "SO: ", instruccion_so, "\n")
                 print("CPU: ", instrucion_cpu, "Ram: ", instruccion_ram, "Almacenamiento: ", instruccion_almacenamiento, "\n")
                 print("-----------------------------------------------------------------------------------------------------")
+                ip = f"192.168.1.{instruccion_id}"
+                #crearMV(instruccion_id, instruccion_centro, instruccion_so, instrucion_cpu, instruccion_ram, instruccion_almacenamiento, ip, "Activa")
                 
             elif instruccion_tipo == "migrarVM":
                 instruccion_mv_id = instruccion.getElementsByTagName('vmId')[0].firstChild.data
@@ -140,6 +146,7 @@ def Leer_XML(ruta_archivo):
                 print("Instruccion Migrar VM: \n")
                 print("ID de la VM: ", instruccion_mv_id, "\nCentro de origen: ", instruccion_centro_origen, "\nCentro de destino: ", instruccion_centro_destino, "\n")
                 print("-----------------------------------------------------------------------------------------------------")
+                #eliminarMV(instruccion_centro_origen, instruccion_mv_id, instruccion_centro_destino)
                 
             elif instruccion_tipo == "procesarSolicitudes":
                 instruccion_cantidad_procesar = instruccion.getElementsByTagName('cantidad')[0].firstChild.data
@@ -148,6 +155,8 @@ def Leer_XML(ruta_archivo):
                 print("Instruccion Procesar Solicitudes: \n")
                 print("Cantidad a procesar: ", instruccion_cantidad_procesar, "\n")
                 print("-----------------------------------------------------------------------------------------------------")
+
+                cola_Solicitudes.desencolarN(int(instruccion_cantidad_procesar))
                 
             else:
                 print("Tipo no reconocido")
@@ -157,4 +166,8 @@ def Leer_XML(ruta_archivo):
     except Exception as e:
         print(f"A ocurrido un error al tratar de cargar el archivo: {e} ")
     
-    return lista_Centros
+    lista = ListaDobleEnlazada("Lista de centros y Cola de solicitudes")
+    lista.insertar(lista_Centros)
+    lista.insertar(cola_Solicitudes)
+
+    return lista

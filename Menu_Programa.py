@@ -1,11 +1,7 @@
-from Parser.Parser import Leer_XML
 from Listas.componentes import Centro, MaquinaVirtual, Contenedor, ListaDobleEnlazada
-
-lista_Centros = None
+from FuncionesMenu.FuncionesMenu import BuscarMaquinaVirtual, ImprimirMaquinasVirtualesDelCentro, agregarSolicitud, imprimirCentros, buscarcentro, centroConMasRecursos, CargarArchivoXML, migrarMaquinaVirtual, procesarNSolicitudes, procesarSolicitudDeMayorPrioridad, verColaSolicitudes
 
 def menu():
-
-    global lista_Centros
     
     while True:
         print("\n----- MENÚ PRINCIPAL -----")
@@ -23,9 +19,7 @@ def menu():
         
         if opcion == "1":
             
-            print("Ingresa la ruta de tu archivo: ")
-            ruta = input()
-            lista_Centros = Leer_XML(ruta)
+            CargarArchivoXML()
             
         elif opcion == "2":
             
@@ -36,17 +30,19 @@ def menu():
                 print("3. Mostrar Centro con más recursos")
                 print("4. Salir")
         
-                opcioninterna = input("Selecciona una Opcion")
+                opcioninterna = input("Selecciona una Opcion: \n")
         
                 if opcioninterna == "1":
         
                     imprimirCentros()
         
                 elif opcioninterna == "2":
-                    print("mas cosas")
+                    
+                    buscarcentro()
         
                 elif opcioninterna == "3":
-                    print("y mas cosas")
+                
+                    centroConMasRecursos()
         
                 elif opcioninterna == "4":
                     print("Saliendo al Menu Principal")
@@ -64,17 +60,21 @@ def menu():
                 print("3. Migrar Maquina Virtual")
                 print("4. Salir")
         
-                opcioninterna = input("Selecciona una Opcion")
+                opcioninterna = input("Selecciona una Opcion: \n")
         
                 if opcioninterna == "1":
         
-                    print("cosas xd")
+                    print("Ingresa la ID de la Maquina Virtual que deseas buscar: \n")
+                    id_vm = input()
+                    BuscarMaquinaVirtual(id_vm)
         
                 elif opcioninterna == "2":
-                    print("mas cosas")
+                    print("Ingresa la ID del Centro del que quieres ver sus Maquinas Virtuales: \n")
+                    id = input() 
+                    ImprimirMaquinasVirtualesDelCentro(id)
         
                 elif opcioninterna == "3":
-                    print("y mas cosas")
+                    migrarMaquinaVirtual()
         
                 elif opcioninterna == "4":
                     print("Saliendo al Menu Principal")
@@ -92,7 +92,7 @@ def menu():
                 print("4. Eliminar contenedor")
                 print("5. Salir")
         
-                opcioninterna = input("Selecciona una Opcion")
+                opcioninterna = input("Selecciona una Opcion: \n")
         
                 if opcioninterna == "1":
         
@@ -123,20 +123,19 @@ def menu():
                 print("4. Ver cola de solicitudes")
                 print("5. Salir")
         
-                opcioninterna = input("Selecciona una Opcion")
+                opcioninterna = input("Selecciona una Opcion: \n")
         
                 if opcioninterna == "1":
-        
-                    print("cosas xd")
+                    agregarSolicitud()
         
                 elif opcioninterna == "2":
-                    print("mas cosas")
+                    procesarSolicitudDeMayorPrioridad()
         
                 elif opcioninterna == "3":
-                    print("y mas cosas")
+                    procesarNSolicitudes()
 
                 elif opcioninterna == "4":
-                    print("y mas cosas")
+                    verColaSolicitudes()
         
                 elif opcioninterna == "5":
                     print("Saliendo al Menu Principal")
@@ -155,57 +154,11 @@ def menu():
         elif opcion == "8":
             print("Saliendo del programa...")
             break
+        
+        elif opcion == "9":
+            print("Saliendo del programa...")
+            break
         else:
             print("Opción inválida. Por favor, intente de nuevo.")
 
-def actualizarRecursosCentros():
-    actual = lista_Centros.primero
-    while actual is not None:
-        centro = actual.contenido
-        cpu_usado, ram_usada, almacenamiento_usado = centro.CalcularConsumoCentro()
-        int(centro.cpu) -= int(cpu_usado)
-        int(centro.ram) -= int(ram_usada)
-        int(centro.almacenamiento) -= int(almacenamiento_usado)
-        actual = actual.siguiente
-
-def imprimirCentros():
-    global lista_Centros
-    
-    indice = 1
-    
-    if lista_Centros is None or lista_Centros.primero is None:
-        print("No hay centros cargados. Use 'Cargar Archivo XML'.")
-        return
-
-    actual = lista_Centros.primero
-    
-    while actual is not None:
-        
-        centro = actual.contenido
-        cpu_usado, ram_usada, almacenamiento_usado = centro.CalcularConsumoCentro()
-        
-        porcentaje_cpu = (int(cpu_usado) / int(centro.cpu)) * 100
-        porcentaje_ram = (int(ram_usada) / int(centro.ram)) * 100
-        porcentaje_almacenamiento = (int(almacenamiento_usado) / int(centro.almacenamiento)) * 100
-        
-        print("-----------------------------------------------------------------------------------------------------")
-        print(indice,". ID: ", centro.id, ". Nombre:", centro.nombre)
-        print("CPU: ", cpu_usado, " de ", centro.cpu, "/    Aproximádamente: ", porcentaje_cpu,"%")
-        print("Ram: ", ram_usada, " de ", centro.ram, "/    Aproximádamente: ", porcentaje_ram,"%")
-        print("Almacenamiento: ", almacenamiento_usado, " de ", centro.almacenamiento, "/   Aproximádamente: ", porcentaje_almacenamiento,"%")
-        actual = actual.siguiente
-        indice = indice + 1
-
-def procesarSolicitud(solicitud):
-    tipoSolicitud = solicitud.tipo
-    if(tipoSolicitud == Deploy):
-
-    elif(tipoSolicitud == Backup):
-
-def crearMV():
-
-def eliminarMV():
-
-def validarRecursosCentros(contadorRecursos):
-        
 menu()

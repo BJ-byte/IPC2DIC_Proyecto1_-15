@@ -13,25 +13,45 @@ class Centro:
         self.nombre = nombre
         self.pais = pais
         self.ciudad = ciudad
-        self.cpu = cpu
-        self.ram = ram
-        self.almacenamiento = almacenamiento
+
+        self.cpu_original = cpu
+        self.ram_original = ram
+        self.almacenamiento_original = almacenamiento
+
+        self.cpu_disponible = 0
+        self.ram_disponible = 0
+        self.almacenamiento_disponible = 0
+
+        self.cpu_usado = 0
+        self.ram_usada = 0 
+        self.almacenamiento_usado = 0
+
         self.listaMaquinasVirtuales = ListaDobleEnlazada("VM's de: " + id)
-        
+
     def CalcularConsumoCentro(self):
-        cpu_usado = 0
-        ram_usada = 0
-        almacenamiento_usado = 0
-    
+
+        self.cpu_usado = 0
+        self.ram_usada = 0
+        self.almacenamiento_usado = 0
+
         actual = self.listaMaquinasVirtuales.primero
-        
+
         while actual is not None:
             vm = actual.contenido
-            cpu_usado += int(vm.cpu)
-            ram_usada += int(vm.ram)
-            almacenamiento_usado += int(vm.almacenamiento)
+            self.cpu_usado += int(vm.cpu)
+            self.ram_usada += int(vm.ram)
+            self.almacenamiento_usado += int(vm.almacenamiento)
             actual = actual.siguiente
-        return cpu_usado, ram_usada, almacenamiento_usado
+
+    def CalcularRecursosDisponibles(self):
+
+        self.cpu_disponible = 0
+        self.ram_disponible = 0
+        self.almacenamiento_disponible = 0
+
+        self.cpu_disponible = (int(self.cpu_original) - int(self.cpu_usado))
+        self.ram_disponible = (int(self.ram_original) - int(self.ram_usada))
+        self.almacenamiento_disponible = (int(self.almacenamiento_original) - int(self.almacenamiento_usado))
 
 class MaquinaVirtual:
     def __init__(self, id, centroAsignado, so, cpu, ram, almacenamiento, ip, estado):
